@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+    <div id='app'>
+        <div>
+            {{num}}
+        </div>
+
+        <div v-on:click='handle1'>
+            <button @click.stop='handle2'>阻止冒泡</button>
+        </div>
+
+        <div>
+            <a href="http://www.baidu.com" @click.prevent='handle3'>百度</a>
+        </div>
+        <input type="button" @click = "num++" value="加"/>
+        
+        <input type="button" @click = "num--" value="减"/>
+        <input type="button" @click = "handle(1)" value="加1"/>
+        <input type="button" @click = "handle(-1)" value="减1"/>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+        el: '#app',//用于挂载要管理的元素
+        data: {//定义数据
+               message: '你好啊',
+               num:0
+        },
+        methods:{
+            handle(p){
+                console.log(p);
+                this.num+=p;
+            },
+            handle1(){
+                this.num++;
+            },
+            handle2(event){
+                //阻止冒泡
+                //event.stopPropagation();
+                console.log("handle2");
+            },
+            handle3(event){
+                    //阻止默认行为
+                   // event.preventDefault();
+            }
+        }
+    })
+    </script>
+</body>
+</html>

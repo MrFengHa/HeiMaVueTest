@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按键修饰符</title>
+</head>
+<body>
+    <div id='app'>
+        <from action="">
+            <div>
+                用户名：
+                <input type="text" v-model="uname" @keyup.delete="clearContent"/>
+            </div>
+            <div>
+                密码：
+                <input type="text"  v-model="pwd" @keyup.enter="handleSubmit"/>
+            </div>
+            <div>
+                <input type="button" @click="handleSubmit" value="提交"/>
+            </div>
+        </from>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+        el: '#app',//用于挂载要管理的元素
+        data: {//定义数据
+               uname: '',
+               pwd:''
+        },
+        methods:{
+            clearContent(){
+                //清空uname
+                this.uname ='';
+            },
+            handleSubmit(){
+                console.log(this.uname,this.pwd);
+            }
+        }
+    })
+    </script>
+</body>
+</html>

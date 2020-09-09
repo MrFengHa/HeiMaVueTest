@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>自定义按键事件修饰符</title>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" @keyup.A="handle($event)" v-model ="info"/>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        Vue.config.keyCodes.A = 65;
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                info: ''
+            },
+            methods:{
+                handle(event){
+                    console.log(event.keyCode);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>标题</title>
+</head>
+
+<body>
+    <div id='app'>
+        <a v-bind:href="url">百度</a> 
+        <a :href="url">百度1</a> 
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                url: 'http://www.baidu.com'
+            }
+        })
+    </script> 
+</body>
+
+</html>

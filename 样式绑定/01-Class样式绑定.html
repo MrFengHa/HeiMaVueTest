@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>样式绑定</title>
+    <style type="text/css">
+        .active{
+            border:1px solid red;
+            width: 100px;
+            height:100px;
+        }
+        .error{
+            background-color: orange;
+        }
+        .test{
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 对象的写法 -->
+        <div :class="{active:isActive,error:isError}">对象的写法</div>
+        <!-- 数组的写法 -->
+       <div :class="[activeClass,errorClass]">数组的写法</div>
+       <!-- 数组和对象共同使用 -->
+       <div :class="[activeClass,errorClass,{test:isTest}]">数组和对象共同使用</div>
+       <!-- 数组简化操作 -->
+       <div :class="arrClasses">数组简化操作</div>
+       <!-- 对象简化操作 -->
+       <div :class="objClasses">对象简化操作</div>
+        <br>
+        <button  @click='handle'>切换</button>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                isActive:true,
+                isError:true,
+                activeClass:'active',
+                errorClass:'error',
+                isTest:true,
+                arrClasses:['active','error'],
+                objClasses:{
+                    active:true,
+                    error:true
+                }
+            },
+            methods:{
+                handle(){
+                    console.log(11);
+                    this.isActive = !this.isActive;
+                    this.activeClass = '';
+                    this.isTest = false;
+                    this.objClasses.error = false;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

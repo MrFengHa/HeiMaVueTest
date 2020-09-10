@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Style样式绑定</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div :style='{border: borderStyle,width:widthStyle,height:heightStyle}'></div>
+        <div :style='objStyle'></div>
+        <div :style='[objStyle,overStyles]'></div>
+        <button @click="handle">切换</button>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                borderStyle: '1px solid blue',
+                widthStyle:'100px',
+                heightStyle:'200px',
+                objStyle:{
+                    border:'1px solid green',
+                    width:'200px',
+                    height:'100px'
+                },
+                overStyles:{
+                   border:'5px solid orange',
+                    backgroundColor:'blue'
+                }
+            },
+            methods:{
+                handle:function(){
+                    this.heightStyle = '100px',
+                    this.objStyle.width ='100px'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

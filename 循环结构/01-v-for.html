@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>v-for循环结构</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div>水果列表</div>
+        <ul>
+            <li v-for='item in fruites'>{{item}}</li>
+            <li v-for='(item,index) in fruites'>{{item}}----{{index}}</li>
+            <li v-for='item in myfruites'>{{item.ename}}--{{item.cname}}--{{item}}</li>
+        </ul>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /*
+           循环结构
+        */
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                fruites:['apple','orange','banana'],
+                myfruites:[{
+                    ename:'apple',
+                    cname:'苹果'
+                },
+                {
+                    ename:'orange',
+                    cname:'橘子'
+                },
+                {
+                    ename:'banana',
+                    cname:'苹果'
+                }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

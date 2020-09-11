@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>key的用法</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div>水果列表</div>
+        <ul>
+            <li :key='index'  v-for='(item,index) in myfruites'>{{item.ename}}---{{item.cname}}---{{item}}---{{index}}</li>
+            <li :key='item.id'  v-for='(item,index) in myfruites'>{{item.ename}}---{{item.cname}}---{{item}}---{{index}}</li>
+        </ul>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /*
+           循环结构
+        */
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                fruites:['apple','orange','banana'],
+                myfruites:[{
+                    id :1,
+                    ename:'apple',
+                    cname:'苹果'
+                },
+                {
+                    id : 2,
+                    ename:'orange',
+                    cname:'橘子'
+                },
+                {
+                    id : 3,
+                    ename:'banana',
+                    cname:'苹果'
+                }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

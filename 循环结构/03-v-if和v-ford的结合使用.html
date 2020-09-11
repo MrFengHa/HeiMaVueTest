@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>if和for的结合使用</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- for循环遍历对象 -->
+        <div v-for='(v,k,i) in obj'>
+            {{v}}---{{k}}---{{i}}
+        </div>
+        <!-- if和for循环配合使用 -->
+        <div v-if="v==12" v-for='(v,k,i) in obj'>{{v}}---{{k}}---{{i}}</div>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        //使用原生js遍历对象
+        var obj = {
+            uname: 'lisi',
+            age: 12,
+            gender: 'male'
+        }
+        for (let key in obj) {
+            console.log(key, obj[key]);
+        }
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                obj: {
+                    uname: 'lisi',
+                    age: 12,
+                    gender: 'male'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

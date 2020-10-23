@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>标题</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div>{{message}}</div>
+        <div>{{reverseString}}</div>
+        <div></div>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                message: '你好啊'
+            },
+            computed:{
+                reverseString:function(){
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

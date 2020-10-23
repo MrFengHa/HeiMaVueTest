@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>自定义指令</title>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-focus/>
+        
+        <!-- 带参数的 -->
+        <input type="text" v-color="colorSet"/> 
+        <input type="text" v-color2="colorSet"/> 
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /*
+            自定义指令
+        */
+        Vue.directive("focus",{
+            inserted:function(el){
+                //el表示指令所绑定的元素
+                el.focus();
+               
+            }
+        })
+        Vue.directive("color",{
+            bind:function(el,binding){
+                //根据指令的参数设置背景色
+                console.log(binding);
+                el.style.backgroundColor = binding.value;
+            }
+        })
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                colorSet:"orange"
+            },
+            methods:{
+
+            },
+            directives:{
+                color2:{
+                    bind:function(el,binding){
+                        el.style.backgroundColor=binding.value;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

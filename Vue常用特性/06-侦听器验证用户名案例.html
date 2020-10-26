@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>侦听器验证用户名案例</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div>
+            <input type="text" v-model.lazy="uname">
+            <span>{{tip}}</span>
+        </div>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /*
+        侦听器
+            1、采用侦听器监听用户名的变化
+            2、调用后台接口进行验证
+            3、根据验证的结果调整提示信息
+        */
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+               uname:"",
+               tip:'',
+            },
+            methods:{
+                checkName:function(uname)
+                {
+                    //调用接口，但是可以使用定时任务饿的方式模拟接口调用
+                    var that = this;
+                    setTimeout(function(){
+                        //模拟调用接口
+                        if (uname=="admin"){
+                            that.tip="用户名已经存在，请换一个"
+                        }else{
+                            that.tip = '用户名可以使用';
+                        }
+                    },2000)
+                }
+            },
+            watch:{
+                uname:function(val){
+                    //调用后台接口验证用户名的合法性
+                    this. checkName(val);
+                    //修改提示信息
+                    this.tip='正在验证'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

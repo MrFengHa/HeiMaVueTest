@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>有参数的过滤器</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div>{{date | format("yyyy-MM-dd")}}</div>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        Vue.filter('format',function(value,arg){
+            console.log(arg);
+            if (arg=="yyyy-MM-dd"){
+                var ret = '';
+                ret +=value.getFullYear()+'-'+(value.getMonth()+1)+"-"+value.getDate();
+                return ret;
+            }
+            return value;
+        })
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                date:new Date()
+            }
+        })
+    </script>
+</body>
+
+</html>

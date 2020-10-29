@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>标题</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div :style="{fontSize:fontSize+'px'}">{{message}}</div>
+        <menu-item :parr="parr" @enlarge-text="handle"></menu-item>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /*
+            子组件向父组件传递-基本用法
+            props传递数据原则：单项数据流
+        */
+        Vue.component("menu-item",{
+            props:["parr"],
+            template:`
+                <div>
+                    <ul>
+                        <li :key="index" v-for="(item,index) in parr">{{item}}</li>
+                    </ul>
+                    <button @click="parr.push('lemon')">添加</button>
+                    <button @click="$emit('enlarge-text')">扩大父组件中字体大小</button>
+                </div>
+            `
+        })
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                message: '你好啊',
+                parr:["apple","orange","banana"],
+                fontSize:10
+            },
+            methods:{
+                handle(){
+                    //扩大字体大小
+                    this.fontSize+=5
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

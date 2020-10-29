@@ -9,7 +9,7 @@
 <body>
     <div id='app'>
         <div :style="{fontSize:fontSize+'px'}">{{message}}</div>
-        <menu-item :parr="parr" @enlarge-text="handle"></menu-item>
+        <menu-item :parr="parr" @enlarge-text="handle($event)"></menu-item>
     </div>
     <script src='../js/vue.js'></script>
     <script>
@@ -26,6 +26,7 @@
                     </ul>
                     <button @click="parr.push('lemon')">添加</button>
                     <button @click="$emit('enlarge-text')">扩大父组件中字体大小</button>
+                    <button @click="$emit('enlarge-text',5)">扩大父组件中字体大小</button>
                 </div>
             `
         })
@@ -37,9 +38,9 @@
                 fontSize:10
             },
             methods:{
-                handle(){
+                handle(val){
                     //扩大字体大小
-                    this.fontSize+=5
+                    this.fontSize+=val
                 }
             }
         })

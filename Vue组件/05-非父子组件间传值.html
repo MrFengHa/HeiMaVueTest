@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>非父子组件传值</title>
+</head>
+
+<body>
+    <div id='app'>
+        <button @click="handle">销毁</button>
+        <test-tom></test-tom>
+        <test-jerry></test-jerry>
+       
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /*兄弟组件相互传值*/
+        //提供事件中心
+        let hub = new Vue();
+
+        Vue.component("test-tom",{
+            data:function(){
+                return {
+                    num:0
+                }
+            },
+            template:`
+                <div>
+                    <div>Tom:{{num}}</div>
+                    <div>
+
+                        <button @click="handle">点击</button>
+                    </div>
+                </div>
+            `,
+            methods:{
+                handle:function(){
+                      //触发兄弟组件的事件
+                      hub.$emit('jerry-event',2);
+                }
+            },
+            mounted:function(){
+                //监听事件
+                hub.$on("tom-event",(val)=>{
+                    this.num+=val;
+                });
+            }
+        })
+
+        Vue.component("test-jerry",{
+            data:function(){
+                return {
+                    num:0
+                }
+            },
+            template:`
+                <div>
+                    <div>Jerry:{{num}}</div>
+                    <div>
+
+                        <button @click="handle">点击</button>
+                    </div>
+                </div>
+            `,
+            methods:{
+                handle:function(){
+                    //触发兄弟组件的事件
+                    hub.$emit('tom-event',1);
+                }
+            },
+            mounted:function(){
+                //监听事件
+                hub.$on("jerry-event",(val)=>{
+                    this.num+=val;
+                });
+              
+            }
+        })
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                message: '你好啊'
+            },
+            methods:{
+                handle(){
+                    /*销毁事件*/
+                    hub.$off("tom-event");
+                    hub.$off("jerry-event");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

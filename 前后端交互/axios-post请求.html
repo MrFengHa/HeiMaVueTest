@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>标题</title>
+</head>
+
+<body>
+    <div id='app'>
+
+    </div>
+    <script src='../js/vue.js'></script>
+    <script src='../js/axios.js'></script>
+    <script>
+        axios.post("http://localhost:10010/user/save",{
+            id:5,
+            username:"小强",
+            age:22,
+            email:"13245678@cc.com",
+            phone:13260456112,
+        }).then(function (response){
+            console.log(response);
+            app.data.users =response.data
+            
+        }).catch(function(err){
+            console.log(err);
+        });
+
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                message: '你好啊',
+                users:[]
+            }
+        })
+    </script>
+</body>
+
+</html>

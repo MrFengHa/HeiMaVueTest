@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>AXION并发请求</title>
+</head>
+
+<body>
+    <div id='app'>
+
+    </div>
+    <script src='../js/vue.js'></script>
+    <script src='../js/axios.js'></script>
+    <script>
+        function findAll() {
+            return axios.get("http://localhost:10010/user/findAll");
+        }
+        function save() {
+            return axios.post("http://localhost:10010/user/save", {
+                id: 5,
+                username: "小强",
+                age: 22,
+                email: "13245678@cc.com",
+                phone: 13260456112,
+            })
+        }
+
+        //并发执行
+        axios.all([findAll(),save()]).then(axios.spread(function(res1,res2){//用来将一组函数的相应结果汇总处理
+            console.log(res1.data);
+            console.log(res2.data);
+        }));//用来发送一组并发请求
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                message: '你好啊'
+            }
+        })
+    </script>
+</body>
+
+</html>

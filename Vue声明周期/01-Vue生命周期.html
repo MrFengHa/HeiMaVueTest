@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>标题</title>
+</head>
+
+<body>
+    <div id='app'>
+        <span id="sp">{{message}}</span>
+        <input type="button" @click="changeData" value="change">
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                message: '你好啊'
+            },
+            methods:{
+                changeData(){
+                    this.message = "欢迎您"
+                }
+            },
+            beforeCreate(){//生命周期中第一个函数，该函数在执行时Vue实例仅仅完成了自身事件的绑定和生命周期函数的初始化工作，Vue实例中还没有Data el methods相关属性
+                console.log("beforeCreate"+this.message)
+            },
+            created(){//声明周期第二个函数，该函数在执行时，vue实例已经初始化了data属性和methods相关方法
+                console.log("created"+this.message)
+            },
+            beforeMount(){//声明周期的第三个函数，该函数在执行时，该函数在执行vue将el中指定作用范围作为模板编译
+                console.log("beforeMount"+document.getElementById("sp").innerText)
+            },
+            mounted(){//生命周期的第四个函数，该函数在执行过程中，已经将数据渲染到界面中并且已经更新页面
+                console.log("mounted"+document.getElementById("sp").innerText)
+            },
+            beforeUpdate(){//声明周期第五个函数,该函数是data中数据发生变化时执行的 这个事件执行时仅仅是Vue实例中data数据变化页面的显示依然是原始数据
+                console.log("beforeUpdate"+this.message)
+                console.log("beforeUpdate"+document.getElementById("sp").innerText)
+            },
+            updated(){//生命周期的第六个函数，该函数执行时data中数据发生变化，页面中的数据也发生了变化，页面中数据已经和data中一致了
+                console.log("updated"+this.message)
+                console.log("updated"+document.getElementById("sp").innerText)
+            },
+            beforeDestroy(){//声明周期第七个函数，vue中的所有数据 methods component 都没销毁
+                console.log("beforeDestroy"+this.message)
+            },
+            destroyed(){//生命周期第八个函数：该函数执行时，vue实例彻底销毁
+                console.log("destroyed"+this.message)
+            }
+
+            
+        })
+    </script>
+</body>
+
+</html>

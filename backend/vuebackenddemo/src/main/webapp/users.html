@@ -79,7 +79,7 @@
                         <td>{{user.salary}}</td>
                         <td>{{user.phoneCode}}</td>
                         <td>
-                            <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
+                            <button class="btn btn-danger" type="button" @click="deleteUserInfo(user.id)">删除</button>&nbsp;&nbsp;
                             <button class="btn btn-primary">修改</button>
                         </td>
                     </tr>
@@ -90,24 +90,24 @@
                 <form>
                     <div class="form-group">
                         <label for="username">姓名：</label>
-                        <input type="email" class="form-control" id="username" placeholder="请输入姓名">
+                        <input type="email" class="form-control" id="username" v-model="user.name" placeholder="请输入姓名">
                     </div>
                     <div class="form-group">
                         <label for="age">年龄：</label>
-                        <input type="email" class="form-control" id="age" placeholder="请输入密码">
+                        <input type="email" class="form-control" id="age"  v-model="user.age" placeholder="请输入年龄">
                     </div>
                     <div class="form-group">
                         <label for="salary">薪资：</label>
-                        <input type="email" class="form-control" id="salary" placeholder="请输入邮箱">
+                        <input type="email" class="form-control" id="salary" v-model="user.salary" placeholder="请输入薪资">
                     </div>
                     <div class="form-group">
                         <label for="phoneCode">电话：</label>
-                        <input type="email" class="form-control" id="phoneCode" placeholder="请输入电话号码">
+                        <input type="email" class="form-control" id="phoneCode" v-model="user.phoneCode" placeholder="请输入电话号码">
                     </div>
 
 
-                    <button type="submit" class="btn btn-success">保存</button>
-                    <button type="submit" class="btn btn-danger">重置</button>
+                    <button @click.prevent="saveUserInfo" class="btn btn-success">保存</button>
+                    <button @click.prevent="restUserInfo" class="btn btn-danger">重置</button>
                 </form>
             </div>
         </div>

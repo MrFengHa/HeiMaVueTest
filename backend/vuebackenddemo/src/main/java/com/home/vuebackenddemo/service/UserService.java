@@ -1,4 +1,4 @@
-package com.home.vuebackenddemo.mapper;
+package com.home.vuebackenddemo.service;
 
 import com.home.vuebackenddemo.entity.User;
 
@@ -8,11 +8,11 @@ import java.util.List;
  * 文件描述
  *
  * @author 冯根源
- * @date 2020/12/9 22:23
+ * @date 2020/12/9 22:53
  */
-public interface UserMapper {
+public interface UserService {
     /**
-     * 查询所有user对象
+     * 查询所有
      * @return
      */
     List<User> findAll();
@@ -24,7 +24,7 @@ public interface UserMapper {
     void save(User user);
 
     /**
-     * 根据id删除用户
+     * 根据id删除用户细信息
      * @param id
      */
     void delete(String id);

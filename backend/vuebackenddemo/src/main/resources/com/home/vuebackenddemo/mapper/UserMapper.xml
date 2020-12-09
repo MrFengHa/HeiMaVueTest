@@ -4,4 +4,11 @@
     <select id="findAll" resultType="user">
         select * from t_user
     </select>
+    <insert id="save" parameterType="user">
+        insert into t_user values (#{id},#{name},#{age},#{salary},#{phoneCode})
+    </insert>
+<!--删除用户信息-->
+    <delete id="delete" parameterType="string">
+        delete from t_user where id = #{id}
+    </delete>
 </mapper>

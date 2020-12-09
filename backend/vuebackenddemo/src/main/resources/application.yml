@@ -1,0 +1,16 @@
+server:
+  port: 8989
+  servlet:
+    context-path: /user
+spring:
+  application:
+    name: user
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://lszxydh.cn:3306/ssm?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: sql
+mybatis:
+  mapper-locations: classpath:com/home/vuebackenddemo/mapper/*.xml
+  type-aliases-package: com.home.vuebackenddemo.entity

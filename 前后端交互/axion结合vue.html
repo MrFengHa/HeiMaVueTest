@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>标题</title>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-model="CityName" @keyup.delete="shows" @keyup.enter="searchCity">
+        <input type="button" value="收索" @click="searchCity" />
+        <br>
+        <span v-for="city in hostCity">
+            <a href="http:/www.baidu.com" @click.prevent="searchCitys(city)">{{city}}</a> &nbsp;&nbsp;
+        </span>
+
+        <hr>
+        <span v-show="isShow">{{CityName}},今天的天气是：{{message}}</span>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script src='../js/axios.js'></script>
+    <script>
+        let app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            data: {//定义数据
+                hostCity: ["北京", "上海", "广州", "深圳"],
+                CityName: "",
+                message: "",
+                isShow: false
+            },
+            methods: {
+                searchCity() {
+                    //获取输入的城市信息
+                    console.log(this.CityName);
+                    let _this = this;
+                    //发送axios请求
+                    axios.get("http://localhost:10010/city/find?name=" + this.CityName).then(function (res) {
+                        _this.message = res.data.message;
+                        _this.isShow = true;
+                    }).catch(function (err) {
+                        console.log(err);
+                    })
+                },
+                shows() {
+                    this.isShow = false;
+                },
+                searchCitys(city) {
+                    console.log(city);
+                    this.CityName = city;
+                    this.searchCity();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

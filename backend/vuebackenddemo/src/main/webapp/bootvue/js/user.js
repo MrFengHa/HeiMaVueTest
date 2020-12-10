@@ -35,11 +35,10 @@ let app = new Vue({
         },
         //根据用户id删除用户信息
         deleteUserInfo(id){
-            this.id = "id="+id;
-            console.log(id)
+
             //使用axios发动请求删除用户信息
             let _this = this;
-            axios.post("http://localhost:8989/user/user/delete",_this.id).then(function (response) {
+            axios.post("http://localhost:8989/user/user/delete","id="+id).then(function (response) {
                 console.log(response.data)
                if (response.data.success){
                    _this.findAll();
@@ -50,6 +49,13 @@ let app = new Vue({
             }).catch(function (err) {
                 console.log(err)
             });
+        },
+        findOneUserInfo(id){
+            let _this = this;
+            axios.get("http://localhost:8989/user/user/findUserById?id="+id).then(function (response) {
+                _this.user = response.data
+                console.log(response.data)
+            })
         },
     },
     created() {

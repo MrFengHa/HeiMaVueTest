@@ -28,4 +28,17 @@ public interface UserMapper {
      * @param id
      */
     void delete(String id);
+
+    /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
+    User findUserById(String id);
+
+    /**
+     * 修改用户信息
+     * @param user
+     */
+    void updateUser(User user);
 }

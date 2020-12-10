@@ -49,4 +49,25 @@ public class UserServiceImpl implements UserService {
     public void delete(String id) {
         userMapper.delete(id);
     }
+
+    /**
+     * 根据id查询User
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public User findUserById(String id) {
+        return userMapper.findUserById(id);
+    }
+
+    /**
+     * 修改用户
+     *
+     * @param user
+     */
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
+    }
 }

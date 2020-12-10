@@ -80,7 +80,7 @@
                         <td>{{user.phoneCode}}</td>
                         <td>
                             <button class="btn btn-danger" type="button" @click="deleteUserInfo(user.id)">删除</button>&nbsp;&nbsp;
-                            <button class="btn btn-primary">修改</button>
+                            <button class="btn btn-primary"  @click="findOneUserInfo(user.id)">修改</button>
                         </td>
                     </tr>
                     </tbody>
@@ -106,7 +106,7 @@
                     </div>
 
 
-                    <button @click.prevent="saveUserInfo" class="btn btn-success">保存</button>
+                    <button @click.prevent="saveUserInfo" class="btn btn-success">提交</button>
                     <button @click.prevent="restUserInfo" class="btn btn-danger">重置</button>
                 </form>
             </div>

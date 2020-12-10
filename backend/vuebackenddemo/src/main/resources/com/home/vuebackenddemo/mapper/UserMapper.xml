@@ -19,4 +19,18 @@
         update t_user set name=#{name},age=#{age},salary=#{salary},phoneCOde=#{phoneCode}
         where id = #{id}
     </update>
+
+    <select id="findNameOrPhoneCode" resultType="user">
+        select *
+        from t_user
+        <where>
+            <if test="name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="phoneCode!=''">
+               or phoneCode like concat('%',#{phoneCode},'%')
+            </if>
+        </where>
+
+    </select>
 </mapper>

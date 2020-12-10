@@ -1,10 +1,10 @@
 server:
   port: 8989
   servlet:
-    context-path: /user
+    context-path: /users
 spring:
   application:
-    name: user
+    name: users
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver

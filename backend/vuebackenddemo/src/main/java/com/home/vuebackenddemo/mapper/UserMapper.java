@@ -1,6 +1,7 @@
 package com.home.vuebackenddemo.mapper;
 
 import com.home.vuebackenddemo.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -41,4 +42,12 @@ public interface UserMapper {
      * @param user
      */
     void updateUser(User user);
+
+    /**
+     * 模糊查询
+     * @param name
+     * @param phoneCode
+     * @return
+     */
+    List<User> findNameOrPhoneCode(@Param("name")String name,@Param("phoneCode") String phoneCode);
 }

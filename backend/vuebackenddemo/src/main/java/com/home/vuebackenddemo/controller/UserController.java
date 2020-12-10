@@ -80,5 +80,16 @@ public class UserController {
         return user;
     }
 
+    /**
+     * 模糊查询
+     * @param name
+     * @param phoneCode
+     * @return
+     */
+    @GetMapping("findLike")
+    public List<User> findNameOrPhoneCode(String name,String  phoneCode){
+        return userService.findNameOrPhoneCode(name,phoneCode);
+    }
+
 
 }

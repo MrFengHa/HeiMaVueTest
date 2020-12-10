@@ -70,4 +70,17 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         userMapper.updateUser(user);
     }
+
+    /**
+     * 模糊查询
+     *
+     * @param name
+     * @param phoneCode
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<User> findNameOrPhoneCode(String name, String phoneCode) {
+        return userMapper.findNameOrPhoneCode(name,phoneCode);
+    }
 }

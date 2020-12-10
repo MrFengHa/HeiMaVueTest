@@ -41,4 +41,12 @@ public interface UserService {
      * @param user
      */
     void updateUser(User user);
+
+    /**
+     * 模糊查询
+     * @param name
+     * @param phoneCode
+     * @return
+     */
+    List<User> findNameOrPhoneCode(String name,String phoneCode);
 }

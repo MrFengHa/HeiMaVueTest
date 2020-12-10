@@ -7,47 +7,47 @@
 </head>
 
 <body>
-    <div id='app'>
-        <hello-world></hello-world>
-    </div>
-    <script src='../js/vue.js'></script>
-    <script>
-        /*
-            组件注册
-        */
+<div id='app'>
+    <hello-world></hello-world>
+</div>
+<script src='../js/vue.js'></script>
+<script>
+    /*
+        组件注册
+    */
 
-        // Vue.component('button-counter',
-        //     {
-        //         data:function(){
-        //             return {
-        //                 count:0
-        //             }
-        //         },
-        //         template:'<button @click="count++">点击了{{count}}次</button>'
-        //     }
-        // )
-
-        Vue.component('hello-world',
-            {
-                data:function(){
-                    return {
-                        count:0
-                    }
-                },
-                template:`
-                    <div>
-                        <button @click="count++">点击了{{count}}次</button>
-                    </div>
-                `
-            }
-        )
-        let app = new Vue({
-            el: '#app',//用于挂载要管理的元素
-            data: {//定义数据
-                message: '你好啊'
-            }
-        })
-    </script>
+    // Vue.component('button-counter',
+    //     {
+    //         data:function(){
+    //             return {
+    //                 count:0
+    //             }
+    //         },
+    //         template:'<button @click="count++">点击了{{count}}次</button>'
+    //     }
+    // )
+    //全局组件注册 参数1：组件名称 参数2：组件配置对象   template 用来书写组件的html代码（注意：在template中必须存在一个容器)
+    Vue.component('hello-world',
+        {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: `
+                <div>
+                    <button @click="count++">点击了{{count}}次</button>
+                </div>
+            `
+        }
+    )
+    let app = new Vue({
+        el: '#app',//用于挂载要管理的元素
+        data: {//定义数据
+            message: '你好啊'
+        }
+    })
+</script>
 </body>
 
 </html>
